@@ -1,0 +1,126 @@
+{% extends 'master.html' %}
+{% block content %}
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <div class="container">
+        <h3 class="text-center mt-3" style="color:red">Welcome to : {{request.session.name}}</h3>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Net Balance</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">View total income here</h6>
+                          <div class="alert alert-primary" role="alert">
+                               
+                                  Rs. {{netbalance}}
+                          </div>
+                          <!-- <a href="allTransaction" class="btn btn-primary btn-sm">View All Transactions</a> -->                 
+                        </div>
+                        
+                      </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Total Expense</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">View total Expense here</h6>
+                          <div class="alert alert-danger" role="alert">
+                              Rs. {{expense}}
+                          </div>
+                          <a href="viewExpense" class="btn btn-primary btn-sm">View All Expenses</a>
+                    
+                        </div>
+                        
+                      </div>
+                      <!-- <canvas id="myChart" height="350px" width="300px"></canvas> -->
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Total Income</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">View total income here</h6>
+                          <div class="alert alert-success" role="alert">
+                              Rs. {{income}}
+                          </div> 
+                          <a href="viewIncome" class="btn btn-primary btn-sm">View All Incomes</a>
+                    
+                        </div>
+                        
+                      </div>
+                      <!-- <canvas id="myChart1" height="350px" width="300px"></canvas> -->
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container">
+    	 <div class="row">
+    	 	   <div class="col-sm-6">
+    	 	   	 <canvas id="myChart" height="150px" width="200px"></canvas>
+    	 	   </div>
+    	 	   <div class="col-sm-6">
+    	 	   	  <canvas id="myChart1" height="150px" width="200px"></canvas>
+    	 	   </div>
+
+    	 </div>
+    </div>
+    <script>
+var xValues = ["Food", "Traveling", "ItClass", "Shoping", "Other"];
+var yValues = ['{{food}}','{{traveling}}','{{itclass}}','{{shoping}}','{{other}}'];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Expense Chart"
+    }
+  }
+});
+
+
+var xValues = ["Salary", "Trading", "Shop", "Gaming", "Other"];
+var yValues = ['{{salary}}','{{trading}}','{{shop}}','{{gaming}}','{{other1}}'];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart1", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Income Chart"
+    }
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'master.html' %}
+{% block content %}
+	 <!doctype html>
+<html lang="en">
+  <head>
+  	<title>addIncome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="../static/css/style.css">
+
+	<script type="text/javascript">
+		function confirmDelete()
+		{
+			  var x=confirm("Are You Sure Delete This Data!!!")
+			  return x;
+		}
+	</script>
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(../static/images/bg.jpg);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">View-All-Expense</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-8">
+					<table class="table ml-5">
+						  <thead class="table-dark">
+						  	  <th>Date</th>
+						  	  <th>Amount</th>
+						  	  <th>Category</th>
+						  	  <th>Remark</th>
+						  	  <th colspan="2">Action</th>
+						  </thead>
+						  {% for x in data %}
+						     <tbody>
+						     	  <tr class="table-success">
+						     	  	  <td>{{x.date}}</td>
+						     	  	  <td>{{x.amount}}</td>
+						     	  	  <td>{{x.category}}</td>
+						     	  	  <td>{{x.remark}}</td>
+						     	  	  <td><a href="searchExp?id={{x.id}}" style="color:blue;font-weight:bold;">Edit</a></td>
+						     	  	  <td><a href="deleteExp?id={{x.id}}" style="color:red;font-weight:bold;" onclick="return confirmDelete()">Delete</a></td>
+						     	  </tr>
+						     </tbody>
+						  {% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <script src="../static/js/jquery.min.js"></script> -->
+  <script src="../static/js/popper.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/main.js"></script>
+
+	</body>
+</html>
+{% endblock %}
